@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KEVNTSHOP
 
-## Getting Started
+Catálogo público de moda para hombre y mujer, construido con **Next.js 16 + React 19 + TypeScript + Tailwind CSS 4**.
 
-First, run the development server:
+## Datos del proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Marca:** KEVNTSHOP
+- **WhatsApp:** `+57 313 335 1400` (`573133351400` en enlaces)
+- **Moneda:** COP
+- **Rutas públicas:** `/`, `/hombre`, `/mujer`
+
+## Estructura principal
+
+- `app/`: páginas y metadatos (`/`, `/hombre`, `/mujer`, `sitemap`, `robots`, `icon.svg`).
+- `components/`: UI reutilizable (header, footer, hero, catálogo, tarjetas, modal, WhatsApp).
+- `data/products.ts`: catálogo. **Aquí se agregan o editan productos.**
+- `data/store.ts`: datos de la marca, WhatsApp y precios fijos.
+- `data/categories.ts`: categorías por género.
+- `lib/pricing.ts`: reglas de cálculo de precio.
+- `public/images/`: imágenes locales de producto en WebP (2:3).
+- `scripts/download-images.mjs`: descarga/optimiza imágenes desde URLs.
+- `scripts/create-og.mjs`: genera `public/og.jpg`.
+
+## Reglas de precio
+
+Orden de prioridad:
+
+1. **`priceCOP`** en el producto → se usa ese precio exacto.
+2. **`mens-jeans`** → precio fijo `$190.000` (editable en `data/store.ts`).
+3. **`mens-denim-shorts`** → precio fijo `$160.000` (editable en `data/store.ts`).
+4. **`mens-sets`, `womens-tops`, `womens-jeans`, `womens-dresses`, `womens-sets`** → `costCOP × 2`.
+5. Si no hay dato → **“Precio por confirmar”**.
+
+> Los campos `sourceUrl`, `sourcePriceUSD` y `costCOP` son de uso interno y **no se envían a la interfaz pública**. Solo se expone el precio final calculado.
+
+## Agregar un producto
+
+1. Copia la imagen a `public/images/<hombre|mujer>/<categoria>/mi-producto.webp` (recomendado 1000×1500).
+2. Agrega el producto en `data/products.ts`:
+
+```ts
+{
+  id: "mi-producto",               // único
+  name: "Nombre del producto",
+  gender: "mujer",                 // hombre | mujer
+  category: "womens-sets",         // ver data/categories.ts
+  image: "/images/mujer/conjuntos/mi-producto.webp",
+  alt: "Nombre del producto en color ...",
+  color: "Black",
+  sourceUrl: "https://...",
+  costCOP: 130000,                 // mujer/conjuntos: costo × 2
+  featured: false,
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Para jeans/shorts de hombre, usa `priceCOP` si quieres un precio manual; si no, se aplica el precio fijo configurado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Agregar conjuntos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Las categorías `mens-sets` y `womens-sets` ya existen. Al agregar productos con esas categorías aparecerán automáticamente en los filtros de `/hombre` y `/mujer`.
 
-## Learn More
+## Desarrollo
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Abrir: `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Validación
 
-## Deploy on Vercel
+```bash
+npm run lint
+npm run build
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Publicar en Vercel (recomendado)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Sube este proyecto a un repositorio Git (GitHub/GitLab/Bitbucket).
+2. En [Vercel](https://vercel.com/new), importa el repositorio.
+3. Vercel detectará Next.js automáticamente.
+4. (Opcional) agrega `NEXT_PUBLIC_SITE_URL=https://tu-dominio-o-vercel.app` en variables de entorno.
+5. Deploy. Obtendrás un enlace público `*.vercel.app`.
+
+## Publicar en Netlify (alternativa)
+
+1. Sube el proyecto a Git y conéctalo desde Netlify.
+2. Netlify detecta Next.js y usa su adaptador/OpenNext automáticamente.
+3. (Opcional) define `NEXT_PUBLIC_SITE_URL` con la URL pública.
+4. Publica y comparte el enlace.
+
+## Notas
+
+- Cada producto usa una imagen local (no hotlink).
+- Las fotografías actuales son de referencia de Fashion Nova, usadas bajo la autorización indicada para este catálogo.
+- Para completar conjuntos, envía: **nombre, enlace, costo COP** (y color si aplica). El precio se calculará como costo × 2, salvo precio manual.
