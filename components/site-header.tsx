@@ -9,7 +9,7 @@ export function SiteHeader() {
     <>
       <div className="bg-ink text-paper">
         <p className="mx-auto max-w-[1440px] px-4 py-2.5 text-center text-[9px] uppercase tracking-[0.24em] sm:text-[10px]">
-          Compra directa por WhatsApp · Atención personalizada
+          Selección curada para hombre y mujer · Asesoría directa por WhatsApp
         </p>
       </div>
 

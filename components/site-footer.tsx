@@ -65,9 +65,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-[9px] uppercase tracking-[0.18em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 KEVNTSHOP</p>
-          <p>Precios en COP · Fotografías de referencia: Fashion Nova</p>
+        <div className="mt-12 border-t border-white/10 pt-6 text-[9px] uppercase tracking-[0.18em] text-white/35">
+          <p>© 2026 KEVNTSHOP. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
