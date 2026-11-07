@@ -7,8 +7,8 @@ export function Hero() {
     <section className="relative isolate overflow-hidden bg-ink text-paper">
       <div className="relative min-h-[68svh] sm:min-h-[74svh] lg:min-h-[82svh]">
         <Image
-          src="/images/mujer/vestidos/brenda-leopard-maxi-dress.webp"
-          alt="Vestido maxi leopardo de la selección KEVNTSHOP"
+          src="/images/mujer/tops/speed-up-leopard-halter-top-leopard.webp"
+          alt="Top halter leopardo de la selección KEVNTSHOP"
           fill
           priority
           sizes="100vw"

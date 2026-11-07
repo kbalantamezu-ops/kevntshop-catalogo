@@ -41,8 +41,8 @@ export default function HomePage() {
           <GenderCard
             href="/mujer"
             label="Mujer"
-            copy="Tops, jeans y vestidos"
-            image="/images/mujer/vestidos/taking-calls-collared-sweater-mini-dress.webp"
+            copy="Tops, bodysuits y shorts"
+            image="/images/mujer/tops/speed-up-leopard-halter-top-leopard.webp"
             alt="Selección de mujer KEVNTSHOP"
           />
         </div>

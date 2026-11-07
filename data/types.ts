@@ -8,6 +8,8 @@ export type CategoryId =
   | "mens-sets"
   | "mens-accesorios"
   | "womens-tops"
+  | "womens-bodysuits"
+  | "womens-shorts"
   | "womens-jeans"
   | "womens-dresses"
   | "womens-sets";

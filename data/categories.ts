@@ -39,6 +39,16 @@ export const categories: Record<CategoryId, Category> = {
     gender: "mujer",
     label: "Tops",
   },
+  "womens-bodysuits": {
+    id: "womens-bodysuits",
+    gender: "mujer",
+    label: "Bodysuits",
+  },
+  "womens-shorts": {
+    id: "womens-shorts",
+    gender: "mujer",
+    label: "Shorts",
+  },
   "womens-jeans": {
     id: "womens-jeans",
     gender: "mujer",
